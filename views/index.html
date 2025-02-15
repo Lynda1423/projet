@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
+    <link href="./output.css" rel="stylesheet"> 
+</head>
+<style>
+    /* Style pour la navbar personnalisée */
+    .navbar-custom {
+        background-color: #384040;
+    }
+</style>
+
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="navbar-custom fixed top-0 w-full text-white">
+        <div class="container mx-auto px-4 flex items-center justify-between py-4">
+            <!-- Logo avec animation de chargement -->
+            <a class="text-lg font-bold" href="#">
+                <div class="w-4 h-4 border-4 border-yellow-500 rounded-full animate-spin"></div>
+            </a>
+            <!-- Bouton pour le menu mobile -->
+            <button class="lg:hidden flex items-center px-3 py-2 border rounded text-white border-gray-400 hover:text-gray-200">
+                <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M4 5h16M4 12h16M4 19h16"/>
+                </svg>
+            </button>
+            <!-- Menu principal pour écran large -->
+            <div class="hidden lg:flex lg:items-center lg:space-x-6">
+                <a href="#" class="hover:text-yellow-400">Accueil</a>
+                <!-- Menu déroulant pour "Services" -->
+                <div class="relative group">
+                    <button class="hover:text-yellow-400">Services</button>
+                    <!-- Sous-menu visible au survol -->
+                    <div class="absolute hidden group-hover:block bg-gray-800 rounded shadow-lg mt-2">
+                        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Livraison</a>
+                        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Abonnements</a>
+                    </div>
+                </div>
+                <!-- Menu déroulant pour "Contact" -->
+                <div class="relative group">
+                    <button class="hover:text-yellow-400">Contact</button>
+                    <!-- Sous-menu visible au survol -->
+                    <div class="absolute hidden group-hover:block bg-gray-800 rounded shadow-lg mt-2">
+                        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Page facebook</a>
+                        <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700">Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-20 relative" id="carousel">
+        <div class="overflow-hidden relative h-96">
+            <!-- Slides -->
+            <div class="slide w-full h-full absolute transition-transform duration-500 ease-in-out">
+                <img src="../images/a.webp" alt="Bouquet de roses" class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 w-full p-4">
+                    <h5 class="text-white text-2xl font-bold">Bouquet de roses</h5>
+                    <p class="text-white">Découvrez notre sélection de roses fraîches</p>
+                </div>
+            </div>
+            <div class="slide w-full h-full absolute transition-transform duration-500 ease-in-out">
+                <img src="../images/b.webp" alt="Bouquet de tulipes" class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 w-full p-4">
+                    <h5 class="text-white text-2xl font-bold">Bouquet de tulipes</h5>
+                    <p class="text-white">Un choix idéal pour illuminer votre journée</p>
+                </div>
+            </div>
+            <div class="slide w-full h-full absolute transition-transform duration-500 ease-in-out">
+                <img src="../images/n.webp" alt="Bouquet de lys" class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 w-full p-4">
+                    <h5 class="text-white text-2xl font-bold">Bouquet de lys</h5>
+                    <p class="text-white">Un choix idéal pour vivre votre joie</p>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <button class="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 text-white bg-gray-800 opacity-50 hover:opacity-75" onclick="prevSlide()">&#10094;</button>
+        <button class="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 text-white bg-gray-800 opacity-50 hover:opacity-75" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll("#carousel .slide");
+
+        // Function to show a specific slide based on index
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${100 * (i - index)}%)`;
+            });
+        }
+
+        // Function to go to the next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        // Function to go to the previous slide
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        // Auto slide every 3 seconds
+        setInterval(nextSlide, 3000);
+
+        // Initial display
+        showSlide(currentIndex);
+    </script>
+
+
+    <!-- Cartes de produits -->
+    <div class="container mx-auto my-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Carte 1 -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="../images/c.webp" alt="Roses Rouges" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h5 class="font-bold text-lg">Roses Rouges</h5>
+                <p>Des roses rouges pour un amour éternel.</p>
+            </div>
+            <div class="bg-gray-100 text-center py-2 font-bold">Prix : 4500da</div>
+        </div>
+        <!-- Carte 2 -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="../images/k.jpeg" alt="Fleurs Bleues" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h5 class="font-bold text-lg">Fleurs Bleues</h5>
+                <p>Des Fleurs Bleues pour tes beaux yeux.</p>
+            </div>
+            <div class="bg-gray-100 text-center py-2 font-bold">Prix : 3500da</div>
+        </div>
+        <!-- Carte 3 -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="../images/m.webp" alt="Fleurs Jaunes" class="w-full h-64 object-cover">
+            <div class="p-4">
+                <h5 class="font-bold text-lg">Fleurs Jaunes</h5>
+                <p>Des Fleurs Jaunes comme le soleil.</p>
+            </div>
+            <div class="bg-gray-100 text-center py-2 font-bold">Prix : 2500da</div>
+        </div>
+    </div>
+
+    <!-- Section de bienvenue -->
+    <div class="container mx-auto my-8 text-center">
+        <h1 class="text-4xl font-extrabold">Bienvenue chez notre magasin</h1>
+        <p class="text-lg text-gray-600 mt-4">Nous vous proposons une large gamme de bouquets de fleurs fraîches et colorées.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-blue-500 text-center text-white py-4">
+        <p>© 2024 Fleuriste. <a href="#" class="underline">Droits des utilisateurs - HAMITOUCHE Lynda</a>. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
